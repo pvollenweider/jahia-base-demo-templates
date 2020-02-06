@@ -18,7 +18,7 @@ CKEDITOR.addTemplates('default',
                 title: 'Quote with portrait',
                 description: 'Quote with portrait',
                 html: '<div style="display:inline-block;width=20%;padding-left: 50px;">'+
-                '<img alt="Type alternative text here" class="img-responsive img-bordered rounded-x" src="pathhere" style="width: 200px; height: 200px;">'+
+                '<img alt="Type alternative text here" class="img-fluid img-bordered rounded-x" src="pathhere" style="width: 200px; height: 200px;">'+
                 '</div>'+
                 '<div style="display:inline-block;width=70%;padding-left: 100px;padding-top: 70px;vertical-align:top;">'+
                 '<blockquote class="bq-text-lg text-right">'+

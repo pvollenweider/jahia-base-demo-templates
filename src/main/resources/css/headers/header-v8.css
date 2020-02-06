@@ -327,8 +327,8 @@
 
 /*Navbar Brand*/
 .header-v8 .navbar-brand {
-	height: 84px;
-	max-height: 84px;
+	height: 64px;
+	max-height: 64px;
 	line-height: 60px;
 }
 

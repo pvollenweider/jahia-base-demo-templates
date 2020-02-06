@@ -135,7 +135,7 @@ printMenu = { node, navMenuLevel ->
                                                 homeTitle = homePage.displayableName;
                                             }
 
-                                            println "<li><a href=\"" + homePage.url + "\" class=\"dropdown-toggle\">" + homeTitle + "</a></li>\n";
+                                            println "<li><a href=\"" + homePage.url + "\">" + homeTitle + "</a></li>\n";
 
 
                                         }
@@ -146,7 +146,7 @@ printMenu = { node, navMenuLevel ->
                                     // if this is the maxTopLevel item on the top level menu item put it in a new top level menu item
                                     if (pageIndex == maxTopLevelValue) {
                                         //start new menu
-                                        println "<li class=\"dropdown\"><a class=\"dropdown-toggle\" href=\"javascript:void(0)\">&nbsp;<i class=\"fa fa-caret-down fa-lg\"></i></a>"
+                                        println "<li class=\"dropdown\"><a class=\"dropdown-toggle\" href=\"javascript:void(0)\">&nbsp;</a>"
                                         println "<ul class=\"dropdown-menu pull-right dropdown-menu-alt-side\">"
                                     }
                                     if (hasChildren) {
@@ -159,7 +159,7 @@ printMenu = { node, navMenuLevel ->
                                         println "</li>\n";
                                     } else {
 
-                                        println "<li ${listItemCssClass}><a href=\"${link}\" ${linkTitle} class=\"dropdown-toggle\">" + displayName + "</a></li>\n";
+                                        println "<li ${listItemCssClass}><a href=\"${link}\" ${linkTitle}>" + displayName + "</a></li>\n";
                                     }
                                 } else {
                                     if (!ulIsOpen) {

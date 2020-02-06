@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="${renderContext.mainResourceLocale.language} class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="${renderContext.mainResourceLocale.language}  class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en"> <!--<![endif]-->
+<html lang="${renderContext.mainResourceLocale.language}">
+<!--<![endif]-->
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -26,19 +26,20 @@
 
     <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <meta http-equiv="cache-control" content="must-revalidate" />
+    <meta http-equiv="cache-control" content="must-revalidate"/>
 
     <!-- Favicon -->
     <c:choose>
         <c:when test="${jcr:isNodeType(renderContext.site, 'jdmix:favicon')}">
-            <template:module path="${renderContext.site.path}" view="favicon" />
+            <template:module path="${renderContext.site.path}" view="favicon"/>
         </c:when>
         <c:otherwise>
-            <link rel="shortcut icon" href="${url.context}${url.currentModule}/img/favicon/favicon.ico" type="image/x-icon">
+            <link rel="shortcut icon" href="${url.context}${url.currentModule}/img/favicon/favicon.ico"
+                  type="image/x-icon">
         </c:otherwise>
     </c:choose>
     <!-- Web Fonts -->
@@ -75,6 +76,7 @@
     <!-- JS Global Compulsory -->
     <template:addResources type="javascript" resources="jquery.min.js"/>
     <template:addResources type="javascript" resources="jquery-migrate.min.js"/>
+    <template:addResources type="javascript" resources="popper.min.js"/>
     <template:addResources type="javascript" resources="bootstrap.min.js"/>
     <!-- JS Implementing Plugins -->
     <template:addResources type="javascript" resources="back-to-top.js"/>
@@ -104,7 +106,6 @@
 <c:set var="siteNode" value="${renderContext.site}"/>
 
 
-
 <%-- get the current year for the copyright --%>
 <jsp:useBean id="now" class="java.util.Date"/>
 <fmt:formatDate value="${now}" pattern="yyyy" var="thisYear"/>
@@ -116,37 +117,49 @@
 
 
 <c:if test="${jcr:isNodeType(siteNode, 'jdmix:topBackgroundColor') && not empty siteNode.properties.topHeaderBackgroundColor}">
-    <c:set var="bodyTopBackgroundColor" value="style='background : ${siteNode.properties.topHeaderBackgroundColor.string};'"/>
-    <c:set var="bodyNavBackground" value="style='background : ${siteNode.properties.topHeaderBackgroundColor.string};'"/>
+    <c:set var="bodyTopBackgroundColor"
+           value="style='background : ${siteNode.properties.topHeaderBackgroundColor.string};'"/>
+    <c:set var="bodyNavBackground"
+           value="style='background : ${siteNode.properties.topHeaderBackgroundColor.string};'"/>
 </c:if>
 <c:if test="${jcr:isNodeType(siteNode, 'jdmix:topBackgroundImage') && not empty siteNode.properties.topHeaderBackgroundImage}">
     <c:url var="topBackgoundImageUrl" value="${siteNode.properties.topHeaderBackgroundImage.node.url}" context="/"/>
-    <c:set var="bodyNavBackground" value="style='background : url(${topBackgoundImageUrl}) no-repeat scroll center center / cover;'"/>
+    <c:set var="bodyNavBackground"
+           value="style='background : url(${topBackgoundImageUrl}) no-repeat scroll center center / cover;'"/>
 </c:if>
 
 <c:if test="${jcr:isNodeType(siteNode, 'jdmix:bottomBackgroundColor') && not empty siteNode.properties.bottomHeaderBackgroundColor}">
-    <c:set var="blogTopbarBackground" value="style='background : ${siteNode.properties.bottomHeaderBackgroundColor.string};'"/>
+    <c:set var="blogTopbarBackground"
+           value="style='background : ${siteNode.properties.bottomHeaderBackgroundColor.string};'"/>
 </c:if>
 <c:if test="${jcr:isNodeType(siteNode, 'jdmix:bottomBackgroundImage') && not empty siteNode.properties.bottomHeaderBackgroundImage}">
-    <c:url var="bottomBackgoundImageUrl" value="${siteNode.properties.bottomHeaderBackgroundImage.node.url}" context="/"/>
-    <c:set var="blogTopbarBackground" value="style='background : url(${bottomBackgoundImageUrl}) no-repeat scroll center center / cover;'"/>
+    <c:url var="bottomBackgoundImageUrl" value="${siteNode.properties.bottomHeaderBackgroundImage.node.url}"
+           context="/"/>
+    <c:set var="blogTopbarBackground"
+           value="style='background : url(${bottomBackgoundImageUrl}) no-repeat scroll center center / cover;'"/>
 </c:if>
 
 
 <c:if test="${jcr:isNodeType(siteNode, 'jdmix:topFooterBackgroundColor') && not empty siteNode.properties.topFooterBackgroundColor}">
-    <c:set var="topFooterBackground" value="style='background : ${siteNode.properties.topFooterBackgroundColor.string};'"/>
+    <c:set var="topFooterBackground"
+           value="style='background : ${siteNode.properties.topFooterBackgroundColor.string};'"/>
 </c:if>
 <c:if test="${jcr:isNodeType(siteNode, 'jdmix:topFooterBackgroundImage') && not empty siteNode.properties.topFooterBackgroundImage}">
-    <c:url var="topFooterBackgoundImageUrl" value="${siteNode.properties.topFooterBackgroundImage.node.url}" context="/"/>
-    <c:set var="topFooterBackground" value="style='background : url(${topFooterBackgoundImageUrl}) no-repeat scroll center center / cover;'"/>
+    <c:url var="topFooterBackgoundImageUrl" value="${siteNode.properties.topFooterBackgroundImage.node.url}"
+           context="/"/>
+    <c:set var="topFooterBackground"
+           value="style='background : url(${topFooterBackgoundImageUrl}) no-repeat scroll center center / cover;'"/>
 </c:if>
 
 <c:if test="${jcr:isNodeType(siteNode, 'jdmix:bottomFooterBackgroundColor') && not empty siteNode.properties.bottomFooterBackgroundColor}">
-    <c:set var="bottomFooterBackground" value="style='background : ${siteNode.properties.bottomFooterBackgroundColor.string};'"/>
+    <c:set var="bottomFooterBackground"
+           value="style='background : ${siteNode.properties.bottomFooterBackgroundColor.string};'"/>
 </c:if>
 <c:if test="${jcr:isNodeType(siteNode, 'jdmix:bottomFooterBackgroundImage') && not empty siteNode.properties.bottomFooterBackgroundImage}">
-    <c:url var="bottomFooterBackgoundImageUrl" value="${siteNode.properties.bottomFooterBackgroundImage.node.url}" context="/"/>
-    <c:set var="bottomFooterBackground" value="style='background : url(${bottomFooterBackgoundImageUrl}) no-repeat scroll center center / cover;'"/>
+    <c:url var="bottomFooterBackgoundImageUrl" value="${siteNode.properties.bottomFooterBackgroundImage.node.url}"
+           context="/"/>
+    <c:set var="bottomFooterBackground"
+           value="style='background : url(${bottomFooterBackgoundImageUrl}) no-repeat scroll center center / cover;'"/>
 </c:if>
 
 
@@ -165,22 +178,22 @@
             <div class="container">
                 <div class="row">
                     <!--Small language login menu-->
-                    <div class="col-sm-6 col-xs-6">
-                        <div class="topbar-list topbar-menu">
+                    <div class="col d-block d-sm-none">
+                        <div class="topbar-list w-100 d-flex flex-row">
                             <template:area path="languageLoginMini"/>
                         </div>
-                        <div class="topbar-toggler"><span class="user-box hidden-sm hidden-md hidden-lg"> <i
+                        <div class="topbar-toggler"><span class="user-box "> <i
                                 class="fa fa-user"></i>&nbsp;|&nbsp;<i class="fa fa-globe"></i>&nbsp;<i
                                 class="fa fa-caret-up"></i></span>
                         </div>
-                        <div class="pull-left"><span class="hidden-sm hidden-md hidden-lg">
-                            <i class="fa fa-search search-btn"></i></span>
+                        <div class="pull-left">
+                            <i class="fa fa-search search-btn"></i>
                         </div>
                     </div>
                     <!--/end Small language login menu-->
                     <!--Full language login menu-->
-                    <div class="col-sm-6 col-xs-6 clearfix">
-                        <div class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+                    <div class="col clearfix d-none d-sm-block">
+                        <div class="topbar-list topbar-log_reg pull-right">
                             <template:area path="languageLogin"/>
                         </div>
                     </div>
@@ -195,94 +208,98 @@
         <!-- Navbar -->
 
         <div class="navbar mega-menu" role="navigation" ${bodyNavBackground}>
-                    <div class="container">
-                        <div class="res-container">
-                            <template:area path="toggleNav"/>
-                            <c:choose>
-                                <%-- check to see if the site has site logo specified, if not then use the logo area as defined in the template definition--%>
-                                <c:when test="${jcr:isNodeType(siteNode, 'jdmix:siteLogo')}">
-                                    <div class="navbar-brand">
-                                        <template:module node="${siteNode}" view="default" nodeTypes="jdmix:siteLogo"
-                                                         editable="true"/>
-                                    </div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div id="logo" class="navbar-brand">
-                                        <template:area path="logo"/>
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <div class="collapse navbar-collapse navbar-responsive-collapse">
-                            <template:area path="navmenu"/>
-                        </div>
+            <div class="container">
+                <div class="d-flex flex-row justify-content-between align-items-end w-100">
+                    <div class="res-container mr-auto">
+                        <template:area path="toggleNav"/>
+                        <c:choose>
+                            <%-- check to see if the site has site logo specified, if not then use the logo area as defined in the template definition--%>
+                            <c:when test="${jcr:isNodeType(siteNode, 'jdmix:siteLogo')}">
+                                <div class="navbar-brand">
+                                    <template:module node="${siteNode}" view="default" nodeTypes="jdmix:siteLogo"
+                                                     editable="true"/>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div id="logo" class="navbar-brand">
+                                    <template:area path="logo"/>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <div class="navbar navbar-expand-lg navbar-collapse navbar-responsive-collapse d-flex justify-content-end">
+                        <template:area path="navmenu"/>
                     </div>
                 </div>
-                <!-- End Navbar -->
-            </div>
-            <!--=== End Header v8 ===-->
 
-            <template:area path="landing"/>
-            <!--=== Content Part ===-->
-            <div class="container margin-top-20">
-                <template:area path="pagecontent"/>
             </div>
-            <!-- End Content Part -->
-            <br/>
-            <!--=== Footer Version 1 ===-->
-            <div class="footer-v1">
-                <div class="footer" ${topFooterBackground}>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 md-margin-bottom-40">
-                                <template:area path="footer-1" moduleType="absoluteArea"
-                                               level="0"/>
-                            </div>
-                            <!--/col-md-12-->
-
-                        </div>
-                    </div>
-                </div>
-                <!--/footer-->
-
-                <div class="copyright" ${bottomFooterBackground}>
-                    <div class="container">
-                        <div class="row">
-                            <!-- Footer Message  -->
-                            <div class="col-md-6">
-                                <c:choose>
-                                    <c:when test="${jcr:isNodeType(renderContext.site, 'jdmix:siteFooterMessage')}">
-                                        <template:module path="${renderContext.site.path}" view="siteFooterMessage" />
-                                    </c:when>
-                                    <c:otherwise>
-                                        <p>
-                                                ${thisYear} &copy; <fmt:message key="footer.copyrights"/>
-                                            <a href="#"><fmt:message key="footer.privacy"/></a> | <a href="#"><fmt:message
-                                                key="footer.terms"/></a>
-                                        </p>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                            <!-- End Footer Message  -->
-                            <!-- Social Links -->
-                            <div class="col-md-6">
-                                <template:area path="bookmarksArea"/>
-                                <a href="http://www.jahia.com" title="Powered by Jahia" target="_blank"><img
-                                        src="<c:url value="${url.currentModule}/img/poweredByJahia.png"/>" alt="Powered by Jahia"></a>
-                                <c:if test="${jcr:isNodeType(renderContext.site, 'jdmix:siteSocialLinks')}">
-                                    <template:module path="${renderContext.site.path}" view="siteSocialLinks" />
-                                </c:if>
-                            </div>
-                            <!-- End Social Links -->
-                        </div>
-                    </div>
-                </div>
-                <!--/copyright-->
-            </div>
-            <!--=== End Footer Version 1 ===-->
-            <template:area path="modals"/>
         </div>
-        <!--/wrapper-->
+        <!-- End Navbar -->
+    </div>
+    <!--=== End Header v8 ===-->
+
+    <template:area path="landing"/>
+    <!--=== Content Part ===-->
+    <div class="container margin-top-20">
+        <template:area path="pagecontent"/>
+    </div>
+    <!-- End Content Part -->
+    <br/>
+    <!--=== Footer Version 1 ===-->
+    <div class="footer-v1">
+        <div class="footer" ${topFooterBackground}>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 md-margin-bottom-40">
+                        <template:area path="footer-1" moduleType="absoluteArea"
+                                       level="0"/>
+                    </div>
+                    <!--/col-md-12-->
+
+                </div>
+            </div>
+        </div>
+        <!--/footer-->
+
+        <div class="copyright" ${bottomFooterBackground}>
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Message  -->
+                    <div class="col-md-6">
+                        <c:choose>
+                            <c:when test="${jcr:isNodeType(renderContext.site, 'jdmix:siteFooterMessage')}">
+                                <template:module path="${renderContext.site.path}" view="siteFooterMessage"/>
+                            </c:when>
+                            <c:otherwise>
+                                <p>
+                                        ${thisYear} &copy; <fmt:message key="footer.copyrights"/>
+                                    <a href="#"><fmt:message key="footer.privacy"/></a> | <a href="#"><fmt:message
+                                        key="footer.terms"/></a>
+                                </p>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <!-- End Footer Message  -->
+                    <!-- Social Links -->
+                    <div class="col-md-6">
+                        <template:area path="bookmarksArea"/>
+                        <a href="http://www.jahia.com" title="Powered by Jahia" target="_blank"><img
+                                src="<c:url value="${url.currentModule}/img/poweredByJahia.png"/>"
+                                alt="Powered by Jahia"></a>
+                        <c:if test="${jcr:isNodeType(renderContext.site, 'jdmix:siteSocialLinks')}">
+                            <template:module path="${renderContext.site.path}" view="siteSocialLinks"/>
+                        </c:if>
+                    </div>
+                    <!-- End Social Links -->
+                </div>
+            </div>
+        </div>
+        <!--/copyright-->
+    </div>
+    <!--=== End Footer Version 1 ===-->
+    <template:area path="modals"/>
+</div>
+<!--/wrapper-->
 
 </body>
 </html>
