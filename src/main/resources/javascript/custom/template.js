@@ -3,6 +3,7 @@ jQuery(document).ready(function () {
     App.initParallaxBg();
     ParallaxSlider.initParallaxSlider();
     $('.img-responsive').addClass("img-fluid");
+    $('ul.list-inline>li').addClass("list-inline-item");
 });
 
 // Fix the bootstrap menu behavior in the mobile view
